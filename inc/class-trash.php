@@ -1,22 +1,9 @@
 <?php
 
-use PolyPlugins\PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE;
-
 if (!defined('ABSPATH')) exit;
 
-class TRASH extends PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE
+class TRASH_PRFW
 {
-
-  public function __construct() {
-		parent::__construct();
-	}
-
-  public function init() {
-    if (get_option('trash_warning_prfw') && get_option('trash_disable_prfw')) {
-      add_action('wp_trash_post', array($this, 'trash_check'), 1);
-    }
-  }
-
   // Trash prevention handling
   public function trash_check($post_id)
   {
@@ -26,8 +13,4 @@ class TRASH extends PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE
       exit;
     }
   }
-
 }
-
-$trash = new TRASH;
-$trash->init();

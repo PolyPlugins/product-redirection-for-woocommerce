@@ -1,20 +1,9 @@
 <?php
 
-use PolyPlugins\PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE;
-
 if (!defined('ABSPATH')) exit;
 
-class REDIRECT extends PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE
+class REDIRECT_PRFW
 {
-
-  public function __construct() {
-		parent::__construct();
-	}
-
-  public function init() {
-    add_action('template_redirect', array($this, 'redirect'));
-  }
-
   // Handle redirects
   public function redirect()
   {
@@ -39,18 +28,14 @@ class REDIRECT extends PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE
           }
 
           $cat_url = get_term_link($cat, 'product_cat');
-          wp_redirect($cat_url, (int) $redirect_type, $this->plugin_name);
+          wp_redirect($cat_url, (int) $redirect_type, PRFW_PLUGIN_NAME);
           exit;
         } else {
           $redirect_url = get_field("redirect_url_prfw");
-          wp_redirect($redirect_url, (int) $redirect_type, $this->plugin_name);
+          wp_redirect($redirect_url, (int) $redirect_type, PRFW_PLUGIN_NAME);
           exit;
         }
       }
     }
   }
-
 }
-
-$redirect = new REDIRECT;
-$redirect->init();

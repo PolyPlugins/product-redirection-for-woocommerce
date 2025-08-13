@@ -1,9 +1,9 @@
 === Product Redirection for WooCommerce ===
 Contributors: polyplugins
-Tags: woocommerce, woocommerce redirect, woocommerce redirection, seo, search engine optimization
+Tags: woocommerce, woocommerce redirect, woocommerce redirection, seo, search engine optimization, product redirect, product redirection, product, redirect, redirection
 Requires at least: 4.0
-Tested up to: 6.8
-Stable tag: 1.1.9
+Tested up to: 5.5.1
+Stable tag: 1.1.1
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -11,8 +11,6 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Instead of deleting products which is bad for SEO, redirect them to their parent category or a custom url.
 
 == Description ==
-
-[youtube https://youtu.be/WCCaI83Bw5c]
 
 Deleting products without any redirects can result in a negative impact on your Search Engine Optimization or SEO. To prevent product deletion a notice is displayed on clicking trash to inform that they should be redirecting.
 
@@ -63,37 +61,7 @@ Mainly to reduce the amount of time in development, but also to save resources. 
 
 == Changelog ==
 
-= 1.1.9 =
-Bugfix: Duplicate translation
-
-= 1.1.8 =
-Bugfix: Unexpected output on activation due to admin notices displaying after activation
-Enhancement: Made use of namespacing to prevent class clashes
-Optimized: Various code chunks
-
-= 1.1.7 =
-Added: Advanced Custom Fields standalone dependancy
-
-= 1.1.6 =
-* Optimization: Refactored code in preparation for Advanced Custom Fields standalone dependancy
-* Added: Additional Error Handling
-* Fix: Deprecations
-
-= 1.1.5 =
-* Fix: Versioning
-
-= 1.1.4 =
-* Added: Notice to add Advanced Custom Fields as we will be removing it as a dependancy from our plugin
-* Enhancement: Optimized code
-
-= 1.1.3 =
-* Updated: Dependencies
-* Fix: Deprecations. We plan to rewrite the entire plugin in a future release to remove ACF dependency and further optimize code.
-
-= 1.1.2 =
-* Bugfix: ACF Header Error
-
-= 1.1.1 =
+= 1.0 =
 * Improved: Trash Deletion Prevention
 * Bugfix: ACF fields showing on posts
 * Bugfix: Trash Can Disable message showing on trashed products

@@ -4,124 +4,136 @@
  * Plugin Name: Product Redirection for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/product-redirection-for-woocommerce/
  * Description: Instead of deleting products which is bad for SEO, redirect them to their parent category or a custom url.
- * Version: 1.1.9
+ * Version: 1.1.1
  * Author: Poly Plugins
  * Author URI: https://www.polyplugins.com
  * License: GPL3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace PolyPlugins;
-
 if (!defined('ABSPATH')) exit;
 
-/* To-Do
- * Add section to pull pro classes
- * Add to messages a way to get to support based on error
- */
+register_activation_hook(__FILE__, array('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP', 'activation'));
 
-register_activation_hook(__FILE__, array(__NAMESPACE__ . '\PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE', 'activation'));
-
-class PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE
-{
-
-  protected $plugin;
-  protected $plugin_basename;
-  protected $plugin_name;
-  protected $plugin_dir;
-  protected $plugin_slug;
-  protected $support;
-
-  public function __construct() {
-    // Define Properties
-    $this->plugin = __FILE__;
-    $this->plugin_basename = plugin_basename($this->plugin);
-    $this->plugin_name = trim(dirname($this->plugin_basename), '/');
-    $this->plugin_dir = untrailingslashit(dirname($this->plugin));
-    $this->plugin_slug = dirname(plugin_basename($this->plugin));
-    $this->support = " <a href='https://wordpress.org/support/plugin/" . $this->plugin_slug . "/' target='_blank'>Get Support</a>";
-  }
-
-  public static function activation()
+if (!class_exists('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP')) {
+  class PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP
   {
-    if (self::activation_check()) {
+    public static function activation()
+    {
       $oos_notice = __('This product is out of stock, you can find similar products in our', 'product-redirection-for-woocommerce');
       add_option('trash_warning_prfw', 1);
       add_option('trash_disable_prfw', 1);
       add_option('stock_notice_prfw', $oos_notice);
-    } else {
-      deactivate_plugins(plugin_basename( __FILE__ ));
-      wp_die( __('Product Redirection for WooCommerce failed to activate, because multisite is not currently supported. This is planned in on our <a href="https://trello.com/b/yCyf2WYs/free-product-redirection-for-woocommerce" target="_blank">Roadmap</a>.', 'product-redirection-for-woocommerce' ));
     }
-  }
 
-  public function load()
-  {
-    // Display notice if incompatible
-    add_action( 'admin_init', array( $this, 'check_compatibility' ) );
-    // Don't run if incompatible
-    if (!self::compatibility()) {
-      return;
-    }
-    
-    require($this->plugin_dir . '/inc/class-acf-check.php');
-    require($this->plugin_dir . '/inc/class-enqueue.php');
-    require($this->plugin_dir . '/inc/class-trash.php');
-    require($this->plugin_dir . '/inc/class-redirect.php');
-    require($this->plugin_dir . '/inc/class-admin.php');
-  }
+    public static function load()
+    {
+      if (!is_multisite()) {
+        // Check if WooCommerce is active
+        if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
+          // Constants
+          define('PRFW_VERSION', '1.1.1');
+          define('PRFW_PLUGIN', __FILE__);
+          define('PRFW_PLUGIN_BASENAME', plugin_basename(PRFW_PLUGIN));
+          define('PRFW_PLUGIN_NAME', trim(dirname(PRFW_PLUGIN_BASENAME), '/'));
+          define('PRFW_PLUGIN_DIR', untrailingslashit(dirname(PRFW_PLUGIN)));
+          // Include acf check class
+          if (!class_exists('ACF_CHECK_PRFW')) {
+            require_once(PRFW_PLUGIN_DIR . '/inc/class-acf-check.php');
+          }
+          // Include enqueue class
+          if (!class_exists('ENQUEUE_PRFW')) {
+            require_once(PRFW_PLUGIN_DIR . '/inc/class-enqueue.php');
+          }
+          // Include trash handling class
+          if (!class_exists('TRASH_PRFW')) {
+            require_once(PRFW_PLUGIN_DIR . '/inc/class-trash.php');
+          }
+          // Include redirect class
+          if (!class_exists('REDIRECT_PRFW')) {
+            require_once(PRFW_PLUGIN_DIR . '/inc/class-redirect.php');
+          }
+          // Include admin class
+          if (!class_exists('ADMIN_PRFW')) {
+            require_once(PRFW_PLUGIN_DIR . '/inc/class-admin.php');
+          }
 
-  public static function activation_check() {
-    if (is_multisite()) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+          // Check if Advanced Custom Fields is active
+          if (!class_exists('acf')) {
+            // Hide Admin Settings
+            add_filter('acf/settings/show_admin', '__return_false');
+            // Include ACF since it's not found
+            require_once(PRFW_PLUGIN_DIR . '/acf/acf.php');
+            // Save current ACF fields
+            add_filter('acf/settings/save_json', array('ACF_CHECK_PRFW', 'acf_json_save'));
+            // Load plugin ACF fields as this is faster than storing in database and writing additional code for installation
+            add_filter('acf/settings/load_json', array('ACF_CHECK_PRFW', 'acf_json_load'));
+            add_filter('site_transient_update_plugins', array('ACF_CHECK_PRFW', 'disable_acf_update_notifications'), 11);
+          } else {
+            // ACF found, load fields
+            add_filter('acf/settings/load_json', array('ACF_CHECK_PRFW', 'acf_json_load'));
+          }
 
-  public function check_compatibility() {
-    if ( ! self::compatibility() ) {
-      if ( is_plugin_active( plugin_basename( __FILE__ ) ) ) {
-        add_action( 'admin_notices', array( $this, 'incompatible' ) );
+          // Init admin
+          add_action('admin_init', array('ADMIN_PRFW', 'register_fields'));
+          add_action('admin_menu', array('ADMIN_PRFW', 'register_settings_page'));
+          // Display cta links on plugin page
+          add_action('plugin_action_links_' . PRFW_PLUGIN_BASENAME, array(__CLASS__, 'plugin_action_links_prfw'));
+          add_action('plugin_row_meta', array(__CLASS__, 'plugin_meta_links_prfw'), 10, 4);
+          // Enqueue Scripts and styles
+          if (get_option('trash_warning_prfw')) {
+            add_action('admin_enqueue_scripts', array('ENQUEUE_PRFW', 'product_admin_enqueue'));
+            if (get_option('trash_disable_prfw')) {
+              add_action('wp_trash_post', array('TRASH_PRFW', 'trash_check'), 1);
+            }
+          }
+          // Handle Redirects
+          add_action('template_redirect', array('REDIRECT_PRFW', 'redirect'));
+        } else {
+          // WooCommerce not found
+          add_action('admin_notices', array(__CLASS__, 'woocommerce_not_active_notice'));
+        }
+      } else {
+        add_action('admin_notices', array(__CLASS__, 'multisite_not_supported_notice'));
       }
     }
-  }
 
-  public static function compatibility() {
-    if (!in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-      return false;
-    } else if (!class_exists('acf')) {
-      return false;
-    } else if (is_multisite()) {
-      return false;
-    } else {
-      return true;
+    public function plugin_action_links_prfw($links)
+    {
+      $settings_cta = '<a href="' . admin_url('/admin.php?page=product-redirection-for-woocommerce') . '" style="color: orange; font-weight: 700;">Settings</a>';
+      $pro_cta = '<a href="https://www.polyplugins.com/product/product-redirection-for-woocommerce/" style="color: green; font-weight: 700;" target="_blank">Go Pro</a>';
+      array_unshift($links, $settings_cta, $pro_cta);
+      return $links;
     }
-  }
 
-  public function incompatible() {
-    $class = 'notice notice-error';
+    public function plugin_meta_links_prfw($links, $plugin_base_name)
+    {
+      if ($plugin_base_name === PRFW_PLUGIN_BASENAME) {
+        $links[] = '<a href="https://trello.com/b/yCyf2WYs/free-product-redirection-for-woocommerce" style="color: purple; font-weight: 700;" target="_blank">Roadmap</a>';
+        $links[] = '<a href="https://wordpress.org/support/plugin/product-redirection-for-woocommerce/" style="font-weight: 700;" target="_blank">Support</a>';
+      }
+      return $links;
+    }
 
-    if (!in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-      $message = __('Product Redirection for WooCommerce is not running, because <a href="plugin-install.php?s=WooCommerce&tab=search&type=term">WooCommerce</a> is not installed or activated.', 'product-redirection-for-woocommerce' );
-
+    public function multisite_not_supported_notice()
+    {
+      $class = 'error notice';
+      $message = 'Product Redirection for WooCommerce is not running, because multisite is not supported. This is planned for our next release and is on our <a href="https://trello.com/b/yCyf2WYs/free-product-redirection-for-woocommerce" target="_blank">Roadmap</a>.';
       printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $message);
     }
 
-    if (!class_exists('acf')) {
-      $message = __('Product Redirection for WooCommerce requires <a href="plugin-install.php?s=Advanced%20Custom%20Fields&tab=search&type=term">Advanced Custom Fields</a> to run! Please install Advanced Custom Fields in order to continue using our plugin.', 'product-redirection-for-woocommerce' );
-
-      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $message);
+    public function woocommerce_not_active_notice()
+    {
+      $class = 'error notice';
+      $message = __('Product Redirection for WooCommerce is not running, because WooCommerce is not activated.', 'product-redirection-for-woocommerce');
+      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
     }
-    
-    if (is_multisite()) {
-      $message = __('Product Redirection for WooCommerce is not running, because multisite is not supported. This is planned is on our <a href="https://trello.com/b/yCyf2WYs/free-product-redirection-for-woocommerce" target="_blank">Roadmap</a>.', 'product-redirection-for-woocommerce' );
 
-      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $message, 'product-redirection-for-woocommerce');
+    public static function wordpress_notice($message)
+    {
+      printf('<div class="woocommerce-notices-wrapper"><ul class="woocommerce-error" role="alert"><li>%1$s</li></ul></div>', $message);
     }
   }
-
 }
 
-$product_redirection_for_woocommerce = new PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE();
-$product_redirection_for_woocommerce->load();
+add_action('plugins_loaded', array('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP', 'load'));

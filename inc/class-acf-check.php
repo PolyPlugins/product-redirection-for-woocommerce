@@ -1,28 +1,41 @@
 <?php
 
-use PolyPlugins\PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE;
-
 if (!defined('ABSPATH')) exit;
 
-class ACF_CHECK extends PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE
+class ACF_CHECK_PRFW
 {
+  // Assign settings path
+  public function acf_settings_path($path)
+  {
+    $path = PRFW_PLUGIN_DIR . '/acf/';
+    return $path;
+  }
 
-  public function __construct() {
-		parent::__construct();
-	}
+  // Assign settings directory
+  public function acf_settings_dir($path)
+  {
+    $dir = PRFW_PLUGIN_DIR . '/acf/';
+    return $dir;
+  }
 
-  public function init() {
-    add_filter('acf/settings/load_json', array($this, 'acf_json_load'));
+  // Create a local json save
+  public function acf_json_save($path)
+  {
+    $path = PRFW_PLUGIN_DIR . '/acf/json/save/';
+    return $path;
+  }
+
+  // Prevent default Wordpress Update Notices
+  public function disable_acf_update_notifications($value)
+  {
+    unset($value->response[PRFW_PLUGIN_DIR . '/acf/acf.php']);
+    return $value;
   }
 
   // Load local json
   public function acf_json_load($paths)
   {
-    $paths[] = $this->plugin_dir . '/acf/json/load/';
+    $paths[] = PRFW_PLUGIN_DIR . '/acf/json/load/';
     return $paths;
   }
-
 }
-
-$acf_check = new ACF_CHECK;
-$acf_check->init();
