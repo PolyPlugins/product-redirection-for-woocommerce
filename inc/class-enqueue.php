@@ -1,6 +1,6 @@
 <?php
 
-namespace PolyPlugins;
+use PolyPlugins\PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE;
 
 if (!defined('ABSPATH')) exit;
 

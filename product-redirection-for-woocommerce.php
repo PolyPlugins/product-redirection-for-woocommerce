@@ -4,7 +4,7 @@
  * Plugin Name: Product Redirection for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/product-redirection-for-woocommerce/
  * Description: Instead of deleting products which is bad for SEO, redirect them to their parent category or a custom url.
- * Version: 1.1.8
+ * Version: 1.1.9
  * Author: Poly Plugins
  * Author URI: https://www.polyplugins.com
  * License: GPL3
@@ -63,6 +63,7 @@ class PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE
     if (!self::compatibility()) {
       return;
     }
+    
     require($this->plugin_dir . '/inc/class-acf-check.php');
     require($this->plugin_dir . '/inc/class-enqueue.php');
     require($this->plugin_dir . '/inc/class-trash.php');
@@ -104,19 +105,19 @@ class PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE
     if (!in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
       $message = __('Product Redirection for WooCommerce is not running, because <a href="plugin-install.php?s=WooCommerce&tab=search&type=term">WooCommerce</a> is not installed or activated.', 'product-redirection-for-woocommerce' );
 
-      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), __($message, 'product-redirection-for-woocommerce'));
+      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $message);
     }
 
     if (!class_exists('acf')) {
       $message = __('Product Redirection for WooCommerce requires <a href="plugin-install.php?s=Advanced%20Custom%20Fields&tab=search&type=term">Advanced Custom Fields</a> to run! Please install Advanced Custom Fields in order to continue using our plugin.', 'product-redirection-for-woocommerce' );
 
-      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), __($message, 'product-redirection-for-woocommerce'));
+      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $message);
     }
     
     if (is_multisite()) {
       $message = __('Product Redirection for WooCommerce is not running, because multisite is not supported. This is planned is on our <a href="https://trello.com/b/yCyf2WYs/free-product-redirection-for-woocommerce" target="_blank">Roadmap</a>.', 'product-redirection-for-woocommerce' );
 
-      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), __($message, 'product-redirection-for-woocommerce'));
+      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $message, 'product-redirection-for-woocommerce');
     }
   }
 
