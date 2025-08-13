@@ -3,7 +3,7 @@ Contributors: polyplugins
 Tags: woocommerce, woocommerce redirect, woocommerce redirection, seo, search engine optimization, product redirect, product redirection, product, redirect, redirection
 Requires at least: 4.0
 Tested up to: 5.5.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -11,6 +11,8 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Instead of deleting products which is bad for SEO, redirect them to their parent category or a custom url.
 
 == Description ==
+
+[youtube https://youtu.be/WCCaI83Bw5c]
 
 Deleting products without any redirects can result in a negative impact on your Search Engine Optimization or SEO. To prevent product deletion a notice is displayed on clicking trash to inform that they should be redirecting.
 
@@ -61,7 +63,10 @@ Mainly to reduce the amount of time in development, but also to save resources. 
 
 == Changelog ==
 
-= 1.0 =
+= 1.1.2 =
+* Bugfix: ACF header already sent error
+
+= 1.1.1 =
 * Improved: Trash Deletion Prevention
 * Bugfix: ACF fields showing on posts
 * Bugfix: Trash Can Disable message showing on trashed products
