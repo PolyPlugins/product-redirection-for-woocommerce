@@ -3,7 +3,7 @@ Contributors: polyplugins
 Tags: woocommerce, woocommerce redirect, woocommerce redirection, seo, search engine optimization, product redirect, product redirection, product, redirect, redirection
 Requires at least: 4.0
 Tested up to: 5.7
-Stable tag: 1.1.6
+Stable tag: 1.1.8
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -62,6 +62,14 @@ Mainly to reduce the amount of time in development, but also to save resources. 
 3. Plugin settings
 
 == Changelog ==
+
+= 1.1.8 =
+Bugfix: Unexpected output on activation due to admin notices displaying after activation
+Enhancement: Made use of namespacing to prevent class clashes
+Optimized: Various code chunks
+
+= 1.1.7 =
+Added: Advanced Custom Fields standalone dependancy
 
 = 1.1.6 =
 * Optimization: Refactored code in preparation for Advanced Custom Fields standalone dependancy
