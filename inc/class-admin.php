@@ -5,16 +5,16 @@ if (!defined('ABSPATH')) exit;
 class ADMIN_PRFW
 {
   // Register settings page
-  public function register_settings_page()
+  public static function register_settings_page()
   {
     add_submenu_page('woocommerce', 'Product Redirection for WooCommerce Settings', 'Redirection', 'administrator', 'product-redirection-for-woocommerce', array(__CLASS__, 'settings_page'));
   }
 
   // Create the settings page using Settings API
-  public function settings_page()
+  public static function settings_page()
   {
     // Set tab
-    $tab = ($_GET["tab"]) ? sanitize_key($_GET["tab"]) : 'general';
+    $tab = (isset($_GET["tab"])) ? sanitize_key($_GET["tab"]) : 'general';
 ?>
     <div class="wrap">
       <h2>Product Redirection for WooCommerce Settings</h2>
@@ -47,10 +47,10 @@ class ADMIN_PRFW
   }
 
   // Register fields
-  public function register_fields()
+  public static function register_fields()
   {
     // Set tab
-    $tab = ($_GET["tab"]) ? sanitize_key($_GET["tab"]) : 'general';
+    $tab = (isset($_GET["tab"])) ? sanitize_key($_GET["tab"]) : 'general';
     // Define args for saving the settings, using this for sanitize callback.
     $checked = array(
       'type' => 'boolean',
@@ -94,7 +94,7 @@ class ADMIN_PRFW
   }
 
   // Create options on settings page
-  public function trash_warning_setting()
+  public static function trash_warning_setting()
   {
   ?>
     <input type="checkbox" name="trash_warning_prfw" id="trash_warning_prfw" value="1" <?php checked(1, get_option('trash_warning_prfw'), true); ?> />
@@ -102,7 +102,7 @@ class ADMIN_PRFW
   <?php
   }
 
-  public function trash_disable_setting()
+  public static function trash_disable_setting()
   {
   ?>
     <input type="checkbox" name="trash_disable_prfw" id="trash_disable_prfw" value="1" <?php checked(1, get_option('trash_disable_prfw'), true); ?> />
@@ -110,7 +110,7 @@ class ADMIN_PRFW
   <?php
   }
 
-  public function stock_toggle_setting()
+  public static function stock_toggle_setting()
   {
   ?>
     <input type="checkbox" name="stock_notice_toggle_prfw" id="stock_notice_toggle_prfw" value="1" <?php checked(1, get_option('stock_notice_toggle_prfw'), true); ?> disabled />
@@ -118,7 +118,7 @@ class ADMIN_PRFW
   <?php
   }
 
-  public function stock_recommendations_toggle_setting()
+  public static function stock_recommendations_toggle_setting()
   {
   ?>
     <input type="checkbox" name="stock_recommendations_toggle_prfw" id="stock_recommendations_toggle_prfw" value="1" <?php checked(1, get_option('stock_recommendations_toggle_prfw'), true); ?> disabled />
@@ -126,7 +126,7 @@ class ADMIN_PRFW
   <?php
   }
 
-  public function stock_notice_setting()
+  public static function stock_notice_setting()
   {
   ?>
     <textarea name="stock_notice_prfw" id="stock_notice_prfw" rows="7" cols="50" disabled><?php echo get_option('stock_notice_prfw'); ?></textarea>

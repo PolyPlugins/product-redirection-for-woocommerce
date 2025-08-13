@@ -7,7 +7,7 @@ if( ! class_exists('ACF') ) :
 class ACF {
 	
 	/** @var string The plugin version number. */
-	var $version = '5.9.1';
+	var $version = '5.9.5';
 	
 	/** @var array The plugin settings array. */
 	var $settings = array();

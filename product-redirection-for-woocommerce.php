@@ -4,7 +4,7 @@
  * Plugin Name: Product Redirection for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/product-redirection-for-woocommerce/
  * Description: Instead of deleting products which is bad for SEO, redirect them to their parent category or a custom url.
- * Version: 1.1.2
+ * Version: 1.1.3
  * Author: Poly Plugins
  * Author URI: https://www.polyplugins.com
  * License: GPL3
@@ -98,7 +98,7 @@ if (!class_exists('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP')) {
       }
     }
 
-    public function plugin_action_links_prfw($links)
+    public static function plugin_action_links_prfw($links)
     {
       $settings_cta = '<a href="' . admin_url('/admin.php?page=product-redirection-for-woocommerce') . '" style="color: orange; font-weight: 700;">Settings</a>';
       $pro_cta = '<a href="https://www.polyplugins.com/product/product-redirection-for-woocommerce/" style="color: green; font-weight: 700;" target="_blank">Go Pro</a>';
@@ -106,7 +106,7 @@ if (!class_exists('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP')) {
       return $links;
     }
 
-    public function plugin_meta_links_prfw($links, $plugin_base_name)
+    public static function plugin_meta_links_prfw($links, $plugin_base_name)
     {
       if ($plugin_base_name === PRFW_PLUGIN_BASENAME) {
         $links[] = '<a href="https://trello.com/b/yCyf2WYs/free-product-redirection-for-woocommerce" style="color: purple; font-weight: 700;" target="_blank">Roadmap</a>';
@@ -131,7 +131,7 @@ if (!class_exists('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP')) {
 
     public static function wordpress_notice($message)
     {
-      printf('<div class="woocommerce-notices-wrapper"><ul class="woocommerce-error" role="alert"><li>%1$s</li></ul></div>', $message);
+      printf('<div class="woocommerce-notices-wrapper"><ul class="woocommerce-error" role="alert">%1$s</ul></div>', $message);
     }
   }
 }

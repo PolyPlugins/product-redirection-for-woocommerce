@@ -2,8 +2,8 @@
 Contributors: polyplugins
 Tags: woocommerce, woocommerce redirect, woocommerce redirection, seo, search engine optimization, product redirect, product redirection, product, redirect, redirection
 Requires at least: 4.0
-Tested up to: 5.5.1
-Stable tag: 1.1.2
+Tested up to: 5.7
+Stable tag: 1.1.3
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -63,8 +63,12 @@ Mainly to reduce the amount of time in development, but also to save resources. 
 
 == Changelog ==
 
+= 1.1.3 =
+* Updated: Dependencies
+* Fix: Deprecations. We plan to rewrite the entire plugin in a future release to remove ACF dependency and further optimize code.
+
 = 1.1.2 =
-* Bugfix: ACF header already sent error
+* Bugfix: ACF Header Error
 
 = 1.1.1 =
 * Improved: Trash Deletion Prevention
