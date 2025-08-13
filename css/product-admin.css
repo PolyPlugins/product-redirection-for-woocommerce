@@ -1,0 +1,14 @@
+.customSwalBtn {
+  margin-top: 15px;
+  padding: 5px 15px 10px 15px;
+  border: 0;
+  border-radius: 0.25em;
+  background: initial;
+  background-color: #3085d6;
+  color: #fff;
+  font-size: 1.0625em;
+}
+
+.customSwalBtn:not(:first-child) {
+  margin-left: 10px;
+}

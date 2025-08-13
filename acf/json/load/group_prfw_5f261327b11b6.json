@@ -1,0 +1,153 @@
+{
+    "key": "group_prfw_5f261327b11b6",
+    "title": "Redirection",
+    "fields": [
+        {
+            "key": "field_5f26134156348",
+            "label": "Enable",
+            "name": "enable_prfw",
+            "type": "button_group",
+            "instructions": "To retain SEO it is recommended to use a notice or page instead of a straight redirect. Potential customers may not understand why they were redirected and assume the website is broken, thus returning to the search engine and affecting bounce rates. Our <a href=\"https:\/\/www.polyplugins.com\/product\/product-redirection-for-woocommerce\/\" target=\"_blank\">pro version<\/a> could help solve this problem by showing the customer notices, landing pages, and out of stock recommendations.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Disabled": "Disabled",
+                "Redirect": "Redirect"
+            },
+            "allow_null": 0,
+            "default_value": "None",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
+            "key": "field_5f262d09be8dc",
+            "label": "Redirect Type",
+            "name": "redirect_type_prfw",
+            "type": "select",
+            "instructions": "It is recommended to use Permanent if this product is never coming back and Temporary if the product is coming back.",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5f26134156348",
+                        "operator": "==",
+                        "value": "Redirect"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "301": "Permanent",
+                "302": "Temporary"
+            },
+            "default_value": 301,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5f262dafb9a22",
+            "label": "Redirect To",
+            "name": "redirect_to_prfw",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5f26134156348",
+                        "operator": "==",
+                        "value": "Redirect"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "This Product's Category": "This Product's Category",
+                "Custom": "Custom"
+            },
+            "default_value": "This Product's Category",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5f26140ff9ca3",
+            "label": "Redirect URL",
+            "name": "redirect_url_prfw",
+            "type": "url",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5f262dafb9a22",
+                        "operator": "==",
+                        "value": "Custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            },
+            {
+                "param": "current_user_role",
+                "operator": "==",
+                "value": "administrator"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            },
+            {
+                "param": "current_user_role",
+                "operator": "==",
+                "value": "shop_manager"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1602078408
+}
