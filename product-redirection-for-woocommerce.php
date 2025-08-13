@@ -4,7 +4,7 @@
  * Plugin Name: Product Redirection for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/product-redirection-for-woocommerce/
  * Description: Instead of deleting products which is bad for SEO, redirect them to their parent category or a custom url.
- * Version: 1.1.3
+ * Version: 1.1.4
  * Author: Poly Plugins
  * Author URI: https://www.polyplugins.com
  * License: GPL3
@@ -26,13 +26,13 @@ if (!class_exists('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP')) {
       add_option('stock_notice_prfw', $oos_notice);
     }
 
-    public static function load()
+    public function load()
     {
       if (!is_multisite()) {
         // Check if WooCommerce is active
         if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
           // Constants
-          define('PRFW_VERSION', '1.1.1');
+          define('PRFW_VERSION', '1.1.4');
           define('PRFW_PLUGIN', __FILE__);
           define('PRFW_PLUGIN_BASENAME', plugin_basename(PRFW_PLUGIN));
           define('PRFW_PLUGIN_NAME', trim(dirname(PRFW_PLUGIN_BASENAME), '/'));
@@ -69,6 +69,7 @@ if (!class_exists('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP')) {
             // Load plugin ACF fields as this is faster than storing in database and writing additional code for installation
             add_filter('acf/settings/load_json', array('ACF_CHECK_PRFW', 'acf_json_load'));
             add_filter('site_transient_update_plugins', array('ACF_CHECK_PRFW', 'disable_acf_update_notifications'), 11);
+            add_action('admin_notices', array($this, 'acf_now_required'));
           } else {
             // ACF found, load fields
             add_filter('acf/settings/load_json', array('ACF_CHECK_PRFW', 'acf_json_load'));
@@ -78,8 +79,8 @@ if (!class_exists('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP')) {
           add_action('admin_init', array('ADMIN_PRFW', 'register_fields'));
           add_action('admin_menu', array('ADMIN_PRFW', 'register_settings_page'));
           // Display cta links on plugin page
-          add_action('plugin_action_links_' . PRFW_PLUGIN_BASENAME, array(__CLASS__, 'plugin_action_links_prfw'));
-          add_action('plugin_row_meta', array(__CLASS__, 'plugin_meta_links_prfw'), 10, 4);
+          add_action('plugin_action_links_' . PRFW_PLUGIN_BASENAME, array($this, 'plugin_action_links_prfw'));
+          add_action('plugin_row_meta', array($this, 'plugin_meta_links_prfw'), 10, 4);
           // Enqueue Scripts and styles
           if (get_option('trash_warning_prfw')) {
             add_action('admin_enqueue_scripts', array('ENQUEUE_PRFW', 'product_admin_enqueue'));
@@ -91,10 +92,10 @@ if (!class_exists('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP')) {
           add_action('template_redirect', array('REDIRECT_PRFW', 'redirect'));
         } else {
           // WooCommerce not found
-          add_action('admin_notices', array(__CLASS__, 'woocommerce_not_active_notice'));
+          add_action('admin_notices', array($this, 'woocommerce_not_active_notice'));
         }
       } else {
-        add_action('admin_notices', array(__CLASS__, 'multisite_not_supported_notice'));
+        add_action('admin_notices', array($this, 'multisite_not_supported_notice'));
       }
     }
 
@@ -115,6 +116,13 @@ if (!class_exists('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP')) {
       return $links;
     }
 
+    public function acf_now_required()
+    {
+      $class = 'error notice';
+      $message = 'To enhance securirty, Product Redirection for WooCommerce will REQUIRE Advanced Custom Fields in the next update! Please install Advanced Custom Fields in order to continue using our plugin.';
+      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $message);
+    }
+
     public function multisite_not_supported_notice()
     {
       $class = 'error notice';
@@ -128,12 +136,8 @@ if (!class_exists('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP')) {
       $message = __('Product Redirection for WooCommerce is not running, because WooCommerce is not activated.', 'product-redirection-for-woocommerce');
       printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
     }
-
-    public static function wordpress_notice($message)
-    {
-      printf('<div class="woocommerce-notices-wrapper"><ul class="woocommerce-error" role="alert">%1$s</ul></div>', $message);
-    }
   }
 }
 
-add_action('plugins_loaded', array('PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP', 'load'));
+$product_redirection_for_woocommerce = new PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE_PP();
+$product_redirection_for_woocommerce->load();

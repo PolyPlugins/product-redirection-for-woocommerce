@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) exit;
 class ENQUEUE_PRFW
 {
   // Enqueue scripts and styles
-  public static function product_admin_enqueue()
+  public function product_admin_enqueue()
   {
     $screen = get_current_screen();
     if ($screen->post_type == 'product' && is_admin()) {
