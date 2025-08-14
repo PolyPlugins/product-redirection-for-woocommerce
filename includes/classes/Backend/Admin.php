@@ -235,7 +235,7 @@ class Admin {
    */
   public function plugin_meta_links_prfw($links, $plugin_base_name) {
     if ($plugin_base_name === plugin_basename($this->plugin)) {
-      $links[] = '<a href="https://trello.com/b/yCyf2WYs/free-product-redirection-for-woocommerce" style="color: purple; font-weight: 700;" target="_blank">' . __("Roadmap", "product-redirection-for-woocommerce") . '</a>';
+      $links[] = '<a href="https://github.com/users/PolyPlugins/projects/2/" style="color: purple; font-weight: 700;" target="_blank">' . __("Roadmap", "product-redirection-for-woocommerce") . '</a>';
       $links[] = '<a href="https://wordpress.org/support/plugin/product-redirection-for-woocommerce/" style="font-weight: 700;" target="_blank">' . __("Support", "product-redirection-for-woocommerce") . '</a>';
     }
     return $links;

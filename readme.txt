@@ -29,10 +29,25 @@ Free Version:
 * Landing pages
 * Product recommendations
 
-Check out our [Roadmap](https://trello.com/b/yCyf2WYs/free-product-redirection-for-woocommerce-roadmap "Roadmap") to see our upcoming features!
+== Roadmap ==
+Check out our [Roadmap](https://github.com/users/PolyPlugins/projects/2/) to see our upcoming features!
+
+== Translations ==
+Translate on [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/product-redirection-for-woocommerce/)
+
+== GDPR ==
+
+We are not lawyers and always recommend doing your own compliance research into third party plugins, libraries, ect, as we've seen other plugins not be in compliance with these regulations.
+
+This plugin uses the Bootstrap, BootStrap Icons, and SweetAlert2 3rd party libraries. These libraries are loaded locally to be compliant with data protection regulations. This plugin also uses TNTSearch.
+
+This plugin collects and stores certain data on your server to ensure proper functionality. This includes:
+
+* Storing plugin settings
+* Remembering which notices have been dismissed
+* Storing search terms made by users when enabled
 
 == Installation ==
-
 
 1. Backup WordPress
 1. Upload the plugin files to the `/wp-content/plugins/` directory, or install the plugin through the WordPress plugins screen directly.
@@ -52,7 +67,6 @@ If you have ACF installed already, you may need to sync the fields, as they are 
 = Why does this use ACF? =
 
 Mainly to reduce the amount of time in development, but also to save resources. If you already have Advanced Custom Fields installed, then you don't have to worry about additional code executing on product admin pages.
-
 
 == Screenshots ==
 

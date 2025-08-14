@@ -30,7 +30,7 @@ class Activation {
     } else {
       deactivate_plugins(plugin_basename( __FILE__ ));
 
-      $notice = __('Product Redirection for WooCommerce failed to activate, because multisite is not currently supported. This is planned in on our <a href="https://trello.com/b/yCyf2WYs/free-product-redirection-for-woocommerce" target="_blank">Roadmap</a>.', 'product-redirection-for-woocommerce' );
+      $notice = __('Product Redirection for WooCommerce failed to activate, because multisite is not currently supported. This is on our Roadmap.', 'product-redirection-for-woocommerce' );
       wp_die(wp_kses_post($notice));
     }
   }

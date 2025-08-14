@@ -105,7 +105,8 @@ class Dependency_Loader {
       ?>
       <div class="notice notice-error">
         <p>
-          <?php esc_html_e('Product Redirection for WooCommerce is not running, because multisite is not supported. This is planned is on our Roadmap.', 'product-redirection-for-woocommerce'); ?>
+          <?php esc_html_e('Product Redirection for WooCommerce is not running, because multisite is not supported. This is planned is on our ', 'product-redirection-for-woocommerce'); ?>
+          <a href="https://github.com/users/PolyPlugins/projects/2/" target="_blank"><?php esc_html__('Roadmap', 'product-redirection-for-woocommerce'); ?></a>
         </p>
       </div>
       <?php

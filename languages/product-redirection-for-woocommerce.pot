@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-14T02:08:23+00:00\n"
+"POT-Creation-Date: 2025-08-14T02:36:15+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: product-redirection-for-woocommerce\n"
@@ -45,7 +45,7 @@ msgid "This product is out of stock, you can find similar products in our"
 msgstr ""
 
 #: includes/classes/Activation.php:33
-msgid "Product Redirection for WooCommerce failed to activate, because multisite is not currently supported. This is planned in on our <a href=\"https://trello.com/b/yCyf2WYs/free-product-redirection-for-woocommerce\" target=\"_blank\">Roadmap</a>."
+msgid "Product Redirection for WooCommerce failed to activate, because multisite is not currently supported. This is on our Roadmap."
 msgstr ""
 
 #: includes/classes/Backend/Admin.php:58
@@ -134,6 +134,7 @@ msgid "Settings"
 msgstr ""
 
 #: includes/classes/Backend/Admin.php:238
+#: includes/classes/Dependency_Loader.php:109
 msgid "Roadmap"
 msgstr ""
 
@@ -162,7 +163,7 @@ msgid " to run! Please install Advanced Custom Fields in order to continue using
 msgstr ""
 
 #: includes/classes/Dependency_Loader.php:108
-msgid "Product Redirection for WooCommerce is not running, because multisite is not supported. This is planned is on our Roadmap."
+msgid "Product Redirection for WooCommerce is not running, because multisite is not supported. This is planned is on our "
 msgstr ""
 
 #: includes/classes/Frontend/Actions/Redirect.php:78

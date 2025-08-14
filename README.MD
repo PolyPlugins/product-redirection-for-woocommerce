@@ -19,6 +19,13 @@ Deleting products without any redirects can result in a negative impact on your 
 * Landing pages
 * Product recommendations
 
+## Roadmap
+
+Check out our [Roadmap](https://github.com/users/PolyPlugins/projects/2/) to see our upcoming features!
+
+## Translations
+Translate on [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/product-redirection-for-woocommerce/)
+
 ## GDPR
 
 We are not lawyers and always recommend doing your own compliance research into third-party plugins, libraries, etc., as we've seen other plugins not be in compliance with these regulations.
