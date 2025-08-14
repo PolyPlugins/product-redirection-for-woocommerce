@@ -39,13 +39,12 @@ Translate on [translate.wordpress.org](https://translate.wordpress.org/projects/
 
 We are not lawyers and always recommend doing your own compliance research into third party plugins, libraries, ect, as we've seen other plugins not be in compliance with these regulations.
 
-This plugin uses the Bootstrap, BootStrap Icons, and SweetAlert2 3rd party libraries. These libraries are loaded locally to be compliant with data protection regulations. This plugin also uses TNTSearch.
+This plugin uses the Bootstrap, BootStrap Icons, and SweetAlert2 3rd party libraries. These libraries are loaded locally to be compliant with data protection regulations.
 
 This plugin collects and stores certain data on your server to ensure proper functionality. This includes:
 
 * Storing plugin settings
 * Remembering which notices have been dismissed
-* Storing search terms made by users when enabled
 
 == Installation ==
 
