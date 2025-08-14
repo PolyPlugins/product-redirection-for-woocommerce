@@ -1,0 +1,14 @@
+# Update Checklist
+[ ] Check Pro
+[ ] Update Readme
+[ ] Update Screenshots
+[ ] Plugin Scan
+
+# 1.2.0
+[X] Add quick edit capabilities
+[X] Add additional security enhancements
+[X] Update translation handling
+[X] Migrate to PSR-4
+
+# General
+[ ] Migrate to new admin panel used in our other plugins

@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "PolyPlugins\\Product_Redirection_For_WooCommerce\\": "includes/classes/"
+    }
+  },
+  "scripts": {
+    "autoload": "composer dump-autoload"
+  }
+}

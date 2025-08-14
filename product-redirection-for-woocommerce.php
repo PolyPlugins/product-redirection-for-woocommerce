@@ -2,126 +2,95 @@
 
 /**
  * Plugin Name: Product Redirection for WooCommerce
- * Plugin URI: https://wordpress.org/plugins/product-redirection-for-woocommerce/
  * Description: Instead of deleting products which is bad for SEO, redirect them to their parent category or a custom url.
- * Version: 1.1.9
+ * Version: 1.2.0
+ * Requires at least: 6.5
+ * Requires PHP: 5.4
  * Author: Poly Plugins
  * Author URI: https://www.polyplugins.com
+ * Plugin URI: https://wordpress.org/plugins/product-redirection-for-woocommerce/
+ * Requires Plugins: woocommerce, advanced-custom-fields
+ * Text Domain: product-redirection-for-woocommerce
  * License: GPL3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
-namespace PolyPlugins;
+namespace PolyPlugins\Product_Redirection_For_WooCommerce;
 
 if (!defined('ABSPATH')) exit;
 
-/* To-Do
- * Add section to pull pro classes
- * Add to messages a way to get to support based on error
- */
+require plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
-register_activation_hook(__FILE__, array(__NAMESPACE__ . '\PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE', 'activation'));
+register_activation_hook(__FILE__, array(__NAMESPACE__ . '\Activation', 'init'));
+register_deactivation_hook(__FILE__, array(__NAMESPACE__ . '\Deactivation', 'init'));
 
-class PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE
+class Product_Redirection_For_WooCommerce
 {
-
-  protected $plugin;
-  protected $plugin_basename;
-  protected $plugin_name;
-  protected $plugin_dir;
-  protected $plugin_slug;
-  protected $support;
-
+  
+  /**
+	 * Full path and filename of plugin.
+	 *
+	 * @var string $version Full path and filename of plugin.
+	 */
+  private $plugin;
+  
+  /**
+	 * The version of this plugin.
+	 *
+	 * @var   string $version The current version of this plugin.
+	 */
+	private $version;
+  
+  /**
+   * The plugin directory.
+	 *
+   * @var string $plugin_dir The plugin directory.
+	 */
+  private $plugin_dir;
+  
+  /**
+   * __construct
+   *
+   * @return void
+   */
   public function __construct() {
-    // Define Properties
-    $this->plugin = __FILE__;
-    $this->plugin_basename = plugin_basename($this->plugin);
-    $this->plugin_name = trim(dirname($this->plugin_basename), '/');
-    $this->plugin_dir = untrailingslashit(dirname($this->plugin));
-    $this->plugin_slug = dirname(plugin_basename($this->plugin));
-    $this->support = " <a href='https://wordpress.org/support/plugin/" . $this->plugin_slug . "/' target='_blank'>Get Support</a>";
+    $this->plugin         = __FILE__;
+    $this->version        = $this->get_plugin_version();
+    $this->plugin_dir     = untrailingslashit(dirname($this->plugin));
+  }
+  
+  /**
+   * Init
+   *
+   * @return void
+   */
+  public function init() {
+    $this->load_dependencies();
+  }
+  
+  /**
+   * Load dependencies
+   *
+   * @return void
+   */
+  public function load_dependencies() {
+    $dependency_loader = new Dependency_Loader($this->plugin, $this->version, $this->plugin_dir);
+    $dependency_loader->init();
   }
 
-  public static function activation()
-  {
-    if (self::activation_check()) {
-      $oos_notice = __('This product is out of stock, you can find similar products in our', 'product-redirection-for-woocommerce');
-      add_option('trash_warning_prfw', 1);
-      add_option('trash_disable_prfw', 1);
-      add_option('stock_notice_prfw', $oos_notice);
-    } else {
-      deactivate_plugins(plugin_basename( __FILE__ ));
-      wp_die( __('Product Redirection for WooCommerce failed to activate, because multisite is not currently supported. This is planned in on our <a href="https://trello.com/b/yCyf2WYs/free-product-redirection-for-woocommerce" target="_blank">Roadmap</a>.', 'product-redirection-for-woocommerce' ));
-    }
-  }
+  /**
+   * Get the plugin version
+   *
+   * @return string $version The plugin version
+   */
+  private function get_plugin_version() {
+    $plugin_data = get_file_data($this->plugin, array('Version' => 'Version'), false);
+    $version     = $plugin_data['Version'];
 
-  public function load()
-  {
-    // Display notice if incompatible
-    add_action( 'admin_init', array( $this, 'check_compatibility' ) );
-    // Don't run if incompatible
-    if (!self::compatibility()) {
-      return;
-    }
-    
-    require($this->plugin_dir . '/inc/class-acf-check.php');
-    require($this->plugin_dir . '/inc/class-enqueue.php');
-    require($this->plugin_dir . '/inc/class-trash.php');
-    require($this->plugin_dir . '/inc/class-redirect.php');
-    require($this->plugin_dir . '/inc/class-admin.php');
-  }
-
-  public static function activation_check() {
-    if (is_multisite()) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  public function check_compatibility() {
-    if ( ! self::compatibility() ) {
-      if ( is_plugin_active( plugin_basename( __FILE__ ) ) ) {
-        add_action( 'admin_notices', array( $this, 'incompatible' ) );
-      }
-    }
-  }
-
-  public static function compatibility() {
-    if (!in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-      return false;
-    } else if (!class_exists('acf')) {
-      return false;
-    } else if (is_multisite()) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  public function incompatible() {
-    $class = 'notice notice-error';
-
-    if (!in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-      $message = __('Product Redirection for WooCommerce is not running, because <a href="plugin-install.php?s=WooCommerce&tab=search&type=term">WooCommerce</a> is not installed or activated.', 'product-redirection-for-woocommerce' );
-
-      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $message);
-    }
-
-    if (!class_exists('acf')) {
-      $message = __('Product Redirection for WooCommerce requires <a href="plugin-install.php?s=Advanced%20Custom%20Fields&tab=search&type=term">Advanced Custom Fields</a> to run! Please install Advanced Custom Fields in order to continue using our plugin.', 'product-redirection-for-woocommerce' );
-
-      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $message);
-    }
-    
-    if (is_multisite()) {
-      $message = __('Product Redirection for WooCommerce is not running, because multisite is not supported. This is planned is on our <a href="https://trello.com/b/yCyf2WYs/free-product-redirection-for-woocommerce" target="_blank">Roadmap</a>.', 'product-redirection-for-woocommerce' );
-
-      printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), $message, 'product-redirection-for-woocommerce');
-    }
+    return $version;
   }
 
 }
 
-$product_redirection_for_woocommerce = new PRODUCT_REDIRECTION_FOR_WOOCOMMMERCE();
-$product_redirection_for_woocommerce->load();
+$product_redirection_for_woocommerce = new Product_Redirection_For_WooCommerce();
+$product_redirection_for_woocommerce->init();

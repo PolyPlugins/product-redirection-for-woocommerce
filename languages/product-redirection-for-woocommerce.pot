@@ -1,0 +1,309 @@
+# Copyright (C) 2025 Poly Plugins
+# This file is distributed under the GPL3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Product Redirection for WooCommerce 1.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/product-redirection-for-woocommerce\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-08-14T09:12:40+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: product-redirection-for-woocommerce\n"
+
+#. Plugin Name of the plugin
+#: product-redirection-for-woocommerce.php
+msgid "Product Redirection for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: product-redirection-for-woocommerce.php
+msgid "https://wordpress.org/plugins/product-redirection-for-woocommerce/"
+msgstr ""
+
+#. Description of the plugin
+#: product-redirection-for-woocommerce.php
+msgid "Instead of deleting products which is bad for SEO, redirect them to their parent category or a custom url."
+msgstr ""
+
+#. Author of the plugin
+#: product-redirection-for-woocommerce.php
+msgid "Poly Plugins"
+msgstr ""
+
+#. Author URI of the plugin
+#: product-redirection-for-woocommerce.php
+msgid "https://www.polyplugins.com"
+msgstr ""
+
+#: includes/classes/Activation.php:25
+#: includes/classes/Backend/Admin.php:128
+msgid "This product is out of stock, you can find similar products in our"
+msgstr ""
+
+#: includes/classes/Activation.php:33
+msgid "Product Redirection for WooCommerce failed to activate, because multisite is not currently supported. This is on our Roadmap."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:58
+#: includes/classes/Backend/Admin.php:71
+msgid "Product Redirection for WooCommerce Settings"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:58
+msgid "Redirection"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:74
+msgid "General"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:75
+#: includes/classes/Backend/Admin.php:144
+msgid "Out of Stock"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:76
+#: includes/classes/Backend/Admin.php:239
+msgid "Support"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:77
+#: includes/classes/Backend/Admin.php:92
+#: includes/classes/Backend/Admin.php:224
+msgid "Go Pro"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:96
+msgid "This is not a valid tab."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:133
+msgid "General Settings"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:135
+msgid "Popup"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:136
+msgid "Disable Trash / Deletion"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:142
+msgid "Out of Stock Settings"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:145
+msgid "Out of Stock Notice"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:146
+msgid "Out of Stock Recommendations"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:162
+msgid "Enable the popup that displays when you click trash or delete on a product?"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:174
+msgid "Disable deleting products?"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:186
+msgid "This will enable handling for out of stock products."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:198
+msgid "This uses WooCommerce Product Shortcode to display products from the parent category for out of stock products."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:211
+msgid "This notice will display for out of stock products. The end is completed by PRFW."
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:212
+msgid "Example: This product is out of stock, you can find similar products in our Glasses category"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:223
+msgid "Settings"
+msgstr ""
+
+#: includes/classes/Backend/Admin.php:238
+#: includes/classes/Dependency_Loader.php:110
+msgid "Roadmap"
+msgstr ""
+
+#: includes/classes/Backend/Edit.php:118
+#: includes/classes/Backend/Edit.php:196
+msgid "PRFW Type"
+msgstr ""
+
+#: includes/classes/Backend/Edit.php:121
+#: includes/classes/Backend/Edit.php:200
+msgid "Disabled"
+msgstr ""
+
+#: includes/classes/Backend/Edit.php:122
+#: includes/classes/Backend/Edit.php:201
+msgid "Redirect"
+msgstr ""
+
+#: includes/classes/Backend/Edit.php:135
+#: includes/classes/Backend/Edit.php:214
+msgid "Redirect Type"
+msgstr ""
+
+#: includes/classes/Backend/Edit.php:138
+#: includes/classes/Backend/Edit.php:218
+msgid "Permanent"
+msgstr ""
+
+#: includes/classes/Backend/Edit.php:139
+#: includes/classes/Backend/Edit.php:219
+msgid "Temporary"
+msgstr ""
+
+#: includes/classes/Backend/Edit.php:152
+#: includes/classes/Backend/Edit.php:232
+msgid "Redirect To"
+msgstr ""
+
+#: includes/classes/Backend/Edit.php:155
+#: includes/classes/Backend/Edit.php:236
+msgid "This Product's Category"
+msgstr ""
+
+#: includes/classes/Backend/Edit.php:156
+#: includes/classes/Backend/Edit.php:237
+msgid "Custom"
+msgstr ""
+
+#: includes/classes/Backend/Edit.php:169
+#: includes/classes/Backend/Edit.php:250
+msgid "Redirect URL"
+msgstr ""
+
+#: includes/classes/Backend/Notices.php:78
+msgid "Product Redirection for WooCommerce has been updated. We've added the ability to quick and bulk edit products per request. We've also updated translations and migrated to PSR-4 standards that we use across a majority of our plugins."
+msgstr ""
+
+#: includes/classes/Backend/Notices.php:79
+msgid "Speaking of plugins, we have a new free plugin if you're interested called "
+msgstr ""
+
+#: includes/classes/Backend/Notices.php:79
+msgid "Maintenance Mode Made Easy"
+msgstr ""
+
+#: includes/classes/Backend/Notices.php:79
+msgid "We've discovered a lot of the free maintenance plugins don't handle stopping WooCommerce orders during downtime and many fail to alert search engines that you're temporarily unavailable, leaving your site vulnerable to SEO issues."
+msgstr ""
+
+#: includes/classes/Backend/Notices.php:80
+msgid "We know it's been a minute since the last Product Redirection for WooCommerce update, so we'd love to hear what you think."
+msgstr ""
+
+#: includes/classes/Backend/Notices.php:81
+msgid "Feature Request"
+msgstr ""
+
+#: includes/classes/Backend/Notices.php:81
+msgid "Leave a Review"
+msgstr ""
+
+#: includes/classes/Dependency_Loader.php:85
+msgid "Product Redirection for WooCommerce is not running, because "
+msgstr ""
+
+#: includes/classes/Dependency_Loader.php:86
+msgid "WooCommerce"
+msgstr ""
+
+#: includes/classes/Dependency_Loader.php:87
+msgid " is not installed or activated."
+msgstr ""
+
+#: includes/classes/Dependency_Loader.php:97
+msgid "Product Redirection for WooCommerce requires "
+msgstr ""
+
+#: includes/classes/Dependency_Loader.php:98
+msgid "Advanced Custom Fields"
+msgstr ""
+
+#: includes/classes/Dependency_Loader.php:99
+msgid " to run! Please install Advanced Custom Fields in order to continue using our plugin."
+msgstr ""
+
+#: includes/classes/Dependency_Loader.php:109
+msgid "Product Redirection for WooCommerce is not running, because multisite is not supported. This is planned is on our "
+msgstr ""
+
+#: includes/classes/Frontend/Actions/Redirect.php:78
+#: includes/classes/Frontend/Actions/Redirect.php:84
+msgid "Product Redirection For WooCommerce"
+msgstr ""
+
+#: includes/classes/Utils.php:53
+msgid "Success"
+msgstr ""
+
+#: includes/classes/Utils.php:70
+msgid "Error"
+msgstr ""
+
+#: js/backend/product-admin.js:19
+#: js/backend/product-admin.js:78
+#: js/backend/product-admin.js:103
+msgid "This is bad for SEO!"
+msgstr ""
+
+#: js/backend/product-admin.js:20
+#: js/backend/product-admin.js:79
+#: js/backend/product-admin.js:104
+msgid "You should redirect the product instead."
+msgstr ""
+
+#: js/backend/product-admin.js:23
+#: js/backend/product-admin.js:86
+#: js/backend/product-admin.js:107
+msgid "SHOW ME"
+msgstr ""
+
+#: js/backend/product-admin.js:24
+#: js/backend/product-admin.js:87
+#: js/backend/product-admin.js:108
+msgid "DELETE PRODUCT"
+msgstr ""
+
+#: js/backend/product-admin.js:55
+#: js/backend/product-admin.js:141
+#: js/backend/product-admin.js:154
+msgid "ERROR"
+msgstr ""
+
+#: js/backend/product-admin.js:57
+#: js/backend/product-admin.js:143
+#: js/backend/product-admin.js:156
+msgid "Deleting products is not allowed, please see the Redirection section on this page."
+msgstr ""
+
+#: js/backend/product-admin.js:81
+#: js/backend/product-admin.js:145
+msgid "Did you know you have the"
+msgstr ""
+
+#: js/backend/product-admin.js:82
+#: js/backend/product-admin.js:146
+msgid "WordPress Trash Can"
+msgstr ""
+
+#: js/backend/product-admin.js:83
+#: js/backend/product-admin.js:147
+msgid "disabled?"
+msgstr ""
