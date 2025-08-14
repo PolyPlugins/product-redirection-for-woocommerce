@@ -1,9 +1,9 @@
 ![Product Redirection for WooCommerce Banner](.wordpress-org/banner-1880x609.png)
 ## About
 
-[Demo Video](https://youtu.be/WCCaI83Bw5c)
-
 Deleting products without any redirects can result in a negative impact on your Search Engine Optimization or SEO. To prevent product deletion a notice is displayed on clicking trash to inform that they should be redirecting.
+
+[Demo Video](https://youtu.be/WCCaI83Bw5c)
 
 ## Free Version
 
@@ -31,18 +31,6 @@ This plugin collects and stores certain data on your server to ensure proper fun
 * Remembering which notices have been dismissed
 * Storing search terms made by users when enabled
 
-## Screenshots
-
-![Demo](.wordpress-org/screenshot-1.jpg)
-![General Settings](.wordpress-org/screenshot-2.jpg)
-![Popular Settings](.wordpress-org/screenshot-3.jpg)
-![Posts Settings](.wordpress-org/screenshot-4.jpg)
-![Pages Settings](.wordpress-org/screenshot-5.jpg)
-![Products Settings](.wordpress-org/screenshot-6.jpg)
-![Order Settings](.wordpress-org/screenshot-7.jpg)
-![Advanced Search Settings](.wordpress-org/screenshot-8.jpg)
-![Repo Settings](.wordpress-org/screenshot-9.jpg)
-
 ## Installation
 
 1. Backup WordPress
@@ -63,6 +51,12 @@ If you have ACF installed already, you may need to sync the fields, as they are 
 ### Why does this use ACF?
 
 Mainly to reduce the amount of time in development, but also to save resources. If you already have Advanced Custom Fields installed, then you don't have to worry about additional code executing on product admin pages.
+
+## Screenshots
+
+![Set the redirects via the product.](.wordpress-org/screenshot-1.jpg)
+![Show a notice to help prevent trashing products.](.wordpress-org/screenshot-2.jpg)
+![Plugin settings](.wordpress-org/screenshot-3.jpg)
 
 ## Changelog
 
