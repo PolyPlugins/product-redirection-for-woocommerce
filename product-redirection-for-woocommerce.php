@@ -9,7 +9,7 @@
  * Author: Poly Plugins
  * Author URI: https://www.polyplugins.com
  * Plugin URI: https://wordpress.org/plugins/product-redirection-for-woocommerce/
- * Requires Plugins: woocommerce
+ * Requires Plugins: woocommerce, advanced-custom-fields
  * Text Domain: product-redirection-for-woocommerce
  * License: GPL3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html

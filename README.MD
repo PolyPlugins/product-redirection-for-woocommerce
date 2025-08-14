@@ -12,7 +12,7 @@ Deleting products without any redirects can result in a negative impact on your 
 * Setting: Remove product deletion notice
 * Setting: Disable trash/delete on product manager
 
-## [Pro Version](https://www.polyplugins.com/product/product-redirection-for-woocommerce/ "Poly Plugins"):
+## [Pro Version](https://www.polyplugins.com/product/product-redirection-for-woocommerce/ "Poly Plugins")
 
 * Notices on product page that the product is no longer in stock
 * Automatic out of stock product handling
