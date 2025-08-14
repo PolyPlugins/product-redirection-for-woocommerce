@@ -58,9 +58,21 @@ class Updater {
 
       update_option('prfw_version_polyplugins', $stored_version);
     }
+
+    if (version_compare($stored_version, '1.2.1', '<')) {
+      $stored_version = '1.2.1';
+
+      $this->update_to_121();
+
+      update_option('prfw_version_polyplugins', $stored_version);
+    }
   }
 
   private function update_to_120() {
+    update_option('prfw_notice_dismissed_polyplugins', false);
+  }
+
+  private function update_to_121() {
     update_option('prfw_notice_dismissed_polyplugins', false);
   }
 

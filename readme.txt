@@ -2,7 +2,7 @@
 Contributors: polyplugins
 Tags: woocommerce, woocommerce redirect, woocommerce redirection, seo, search engine optimization
 Tested up to: 6.8
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -75,6 +75,9 @@ Mainly to reduce the amount of time in development, but also to save resources. 
 3. Plugin settings
 
 == Changelog ==
+
+= 1.2.1 =
+* Bugfix: Notice not dismissing
 
 = 1.2.0 =
 * Added: Quick and bulk edit capabilities
