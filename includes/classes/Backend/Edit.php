@@ -321,20 +321,25 @@ class Edit {
       return;
     }
 
-    if (isset($_REQUEST['enable_prfw']) && $_REQUEST['enable_prfw']) {
-      update_field('enable_prfw', sanitize_text_field(wp_unslash($_REQUEST['enable_prfw'])), $post_id);
+    $enable_prfw        = isset($_REQUEST['enable_prfw']) ? sanitize_text_field(wp_unslash($_REQUEST['enable_prfw'])) : '';
+    $redirect_type_prfw = isset($_REQUEST['redirect_type_prfw']) ? sanitize_text_field(wp_unslash($_REQUEST['redirect_type_prfw'])) : '';
+    $redirect_to_prfw   = isset($_REQUEST['redirect_to_prfw']) ? sanitize_text_field(wp_unslash($_REQUEST['redirect_to_prfw'])) : '';
+    $redirect_url_prfw  = isset($_REQUEST['redirect_url_prfw']) ? sanitize_text_field(wp_unslash($_REQUEST['redirect_url_prfw'])) : '';
+
+    if ($enable_prfw) {
+      update_field('enable_prfw', $enable_prfw, $post_id);
     }
 
-    if (isset($_REQUEST['redirect_type_prfw']) && $_REQUEST['redirect_type_prfw']) {
-      update_field('redirect_type_prfw', sanitize_text_field(wp_unslash($_REQUEST['redirect_type_prfw'])), $post_id);
+    if ($redirect_type_prfw) {
+      update_field('redirect_type_prfw', $redirect_type_prfw, $post_id);
     }
 
-    if (isset($_REQUEST['redirect_to_prfw']) && $_REQUEST['redirect_to_prfw']) {
-      update_field('redirect_to_prfw', sanitize_text_field(wp_unslash($_REQUEST['redirect_to_prfw'])), $post_id);
+    if ($redirect_to_prfw) {
+      update_field('redirect_to_prfw', $redirect_to_prfw, $post_id);
     }
     
-    if (isset($_REQUEST['redirect_url_prfw']) && $_REQUEST['redirect_url_prfw']) {
-      update_field('redirect_url_prfw', sanitize_url(wp_unslash($_REQUEST['redirect_url_prfw'])), $post_id);
+    if ($redirect_url_prfw) {
+      update_field('redirect_url_prfw', $redirect_url_prfw, $post_id);
     }
   }
 
