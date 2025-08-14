@@ -67,6 +67,10 @@ Mainly to reduce the amount of time in development, but also to save resources. 
 ## Changelog
 
 ### 1.2.0
+* Added: Quick and bulk edit capabilities
+* Added: Additional security enhancements
+* Updated: Translation handling
+* Migrated: Codebase to PSR-4 standard
 
 ### 1.1.9
 * Bugfix: Duplicate translation

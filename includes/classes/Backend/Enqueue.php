@@ -51,12 +51,8 @@ class Enqueue {
    * @return void
    */
   public function enqueue($hook_suffix) {
-    $screen = get_current_screen();
-    
-    if ($screen->post_type == 'product' && is_admin()) {
-      $this->enqueue_styles();
-      $this->enqueue_scripts();
-    }
+    $this->enqueue_styles();
+    $this->enqueue_scripts();
   }
   
   /**
@@ -65,8 +61,16 @@ class Enqueue {
    * @return void
    */
   private function enqueue_styles() {
-    wp_enqueue_style('product-admin-prfw', plugins_url('/css/product-admin.css', $this->plugin), array(), $this->version, false);
-    wp_enqueue_style('sweet-alert-2', plugins_url('/css/sweetalert2.min.css', $this->plugin), array(), $this->version, false);
+    $screen = get_current_screen();
+
+    if ($screen->post_type == 'product' && is_admin()) {
+      wp_enqueue_style('product-admin-prfw', plugins_url('/css/backend/product-admin.css', $this->plugin), array(), $this->version, false);
+      wp_enqueue_style('sweet-alert-2', plugins_url('/css/backend/sweetalert2.min.css', $this->plugin), array(), $this->version, false);
+    }
+
+    if ($screen->id == 'edit-product' && is_admin()) {
+      wp_enqueue_style('quick-edit-prfw', plugins_url('/css/backend/quick-edit.css', $this->plugin), array(), $this->version, false);
+    }
   }
   
   /**
@@ -75,20 +79,29 @@ class Enqueue {
    * @return void
    */
   private function enqueue_scripts() {
-    $status             = get_query_var('post_status');
-    $trash_disable_prfw = get_option('trash_disable_prfw') ? false : true;
+    $screen = get_current_screen();
 
-    wp_enqueue_script('product-admin-prfw', plugins_url('/js/product-admin.js', $this->plugin), array('jquery'), $this->version, true);
-    wp_localize_script('product-admin-prfw', 'prfw_object',
-      array(
-        'siteurl'      => get_option('siteurl'),
-        'trashdisable' => $trash_disable_prfw,
-        'poststatus'   => $status
-      )
-    );
-    wp_set_script_translations('product-admin-prfw', 'product-redirection-for-woocommerce', plugin_dir_path($this->plugin) . '/languages/');
+    if ($screen->post_type == 'product' && is_admin()) {
+      $status             = get_query_var('post_status');
+      $trash_disable_prfw = get_option('trash_disable_prfw') ? false : true;
 
-    wp_enqueue_script('sweet-alert-2', plugins_url('/js/sweetalert2.min.js', $this->plugin), array('jquery'), $this->version, false);
+      wp_enqueue_script('product-admin-prfw', plugins_url('/js/backend/product-admin.js', $this->plugin), array('jquery'), $this->version, true);
+      wp_localize_script('product-admin-prfw', 'prfw_object',
+        array(
+          'siteurl'      => get_option('siteurl'),
+          'trashdisable' => $trash_disable_prfw,
+          'poststatus'   => $status
+        )
+      );
+      wp_set_script_translations('product-admin-prfw', 'product-redirection-for-woocommerce', plugin_dir_path($this->plugin) . '/languages/');
+
+      wp_enqueue_script('sweet-alert-2', plugins_url('/js/backend/sweetalert2.min.js', $this->plugin), array('jquery'), $this->version, false);
+    }
+
+    
+    if ($screen->id == 'edit-product' && is_admin()) {
+      wp_enqueue_script('quick-edit-prfw', plugins_url('/js/backend/quick-edit.js', $this->plugin), array('jquery'), $this->version, true);
+    }
   }
 
 }

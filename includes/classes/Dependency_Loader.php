@@ -51,6 +51,7 @@ class Dependency_Loader {
     if ($is_compatible) {
       $this->load_frontend();
       $this->load_backend();
+      $this->load_updater();
     } else {
       add_action('admin_notices', array($this, 'load_incompatible_notice'));
     }
@@ -111,6 +112,17 @@ class Dependency_Loader {
       </div>
       <?php
     }
+  }
+  
+  
+  /**
+   * Load Updater
+   *
+   * @return void
+   */
+  public function load_updater() {
+    $backend_loader = new Updater($this->plugin, $this->version, $this->plugin_dir);
+    $backend_loader->init();
   }
 
 }

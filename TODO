@@ -5,10 +5,10 @@
 [ ] Plugin Scan
 
 # 1.2.0
+[X] Add quick edit capabilities
 [X] Add additional security enhancements
+[X] Update translation handling
 [X] Migrate to PSR-4
-[ ] Add quick edit capabilities
-[ ] Add update notice
 
 # General
 [ ] Migrate to new admin panel used in our other plugins

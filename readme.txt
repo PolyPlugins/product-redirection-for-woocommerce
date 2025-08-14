@@ -77,17 +77,21 @@ Mainly to reduce the amount of time in development, but also to save resources. 
 == Changelog ==
 
 = 1.2.0 =
+* Added: Quick and bulk edit capabilities
+* Added: Additional security enhancements
+* Updated: Translation handling
+* Migrated: Codebase to PSR-4 standard
 
 = 1.1.9 =
-Bugfix: Duplicate translation
+* Bugfix: Duplicate translation
 
 = 1.1.8 =
-Bugfix: Unexpected output on activation due to admin notices displaying after activation
-Enhancement: Made use of namespacing to prevent class clashes
-Optimized: Various code chunks
+* Bugfix: Unexpected output on activation due to admin notices displaying after activation
+* Enhancement: Made use of namespacing to prevent class clashes
+* Optimized: Various code chunks
 
 = 1.1.7 =
-Added: Advanced Custom Fields standalone dependancy
+* Added: Advanced Custom Fields standalone dependancy
 
 = 1.1.6 =
 * Optimization: Refactored code in preparation for Advanced Custom Fields standalone dependancy

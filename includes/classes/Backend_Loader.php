@@ -5,7 +5,9 @@ namespace PolyPlugins\Product_Redirection_For_WooCommerce;
 use PolyPlugins\Product_Redirection_For_WooCommerce\Backend\ACF;
 use PolyPlugins\Product_Redirection_For_WooCommerce\Backend\Admin;
 use PolyPlugins\Product_Redirection_For_WooCommerce\Backend\Enqueue;
+use PolyPlugins\Product_Redirection_For_WooCommerce\Backend\Edit;
 use PolyPlugins\Product_Redirection_For_WooCommerce\Backend\Trash;
+use PolyPlugins\Product_Redirection_For_WooCommerce\Backend\Notices;
 
 class Backend_Loader {
 
@@ -50,7 +52,9 @@ class Backend_Loader {
     $this->load_enqueue();
     $this->load_settings();
     $this->load_acf();
+    $this->load_edit();
     $this->load_trash();
+    $this->load_notices();
   }
   
   /**
@@ -84,6 +88,16 @@ class Backend_Loader {
   }
   
   /**
+   * Load quick edit
+   *
+   * @return void
+   */
+  public function load_edit() {
+    $edit = new Edit($this->plugin, $this->version, $this->plugin_dir);
+    $edit->init();
+  }
+  
+  /**
    * Load trash
    *
    * @return void
@@ -91,6 +105,16 @@ class Backend_Loader {
   private function load_trash() {
     $trash = new Trash($this->plugin, $this->version, $this->plugin_dir);
     $trash->init();
+  }
+  
+  /**
+   * Load Notices
+   *
+   * @return void
+   */
+  public function load_notices() {
+    $notices = new Notices($this->plugin, $this->version, $this->plugin_dir);
+    $notices->init();
   }
 
 }
