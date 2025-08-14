@@ -1,3 +1,5 @@
+const { __, _x, _n, _nx } = wp.i18n;
+
 jQuery(document).ready(function ($) {
   var trashDisabled = true;
   // Product admin deletion handling
@@ -14,17 +16,17 @@ jQuery(document).ready(function ($) {
       });
 
       swalWithBootstrapButtons.fire({
-        title: "This is bad for SEO!",
-        text: "You should redirect the product instead.",
+        title: __("This is bad for SEO!", 'product-redirection-for-woocommerce'),
+        text: __("You should redirect the product instead.", 'product-redirection-for-woocommerce'),
         icon: "warning",
-        showCancelButton: LOCALIZED_PRFW.trashdisable,
-        confirmButtonText: "SHOW ME",
-        cancelButtonText: "DELETE PRODUCT",
+        showCancelButton: prfw_object.trashdisable,
+        confirmButtonText: __("SHOW ME", 'product-redirection-for-woocommerce'),
+        cancelButtonText: __("DELETE PRODUCT", 'product-redirection-for-woocommerce'),
         reverseButtons: true,
       })
       .then((result) => {
         if (result.value) {
-          var siteurl = LOCALIZED_PRFW.siteurl;
+          var siteurl = prfw_object.siteurl;
           var postid = getParameterByName("post", url);
           var urlMerge =
             siteurl + "/wp-admin/post.php?post=" + postid + "&action=edit";
@@ -50,9 +52,9 @@ jQuery(document).ready(function ($) {
       });
 
       swalWithBootstrapButtons.fire({
-        title: "ERROR",
+        title: __("ERROR", 'product-redirection-for-woocommerce'),
         text:
-          "Deleting products is not allowed, please see the Redirection section on this page.",
+          __("Deleting products is not allowed, please see the Redirection section on this page.", 'product-redirection-for-woocommerce'),
         icon: "error",
         showCancelButton: false,
         confirmButtonText: "OK",
@@ -71,22 +73,22 @@ jQuery(document).ready(function ($) {
         },
         buttonsStyling: true,
       });
-      if (LOCALIZED_PRFW.poststatus != "trash") {
+      if (prfw_object.poststatus != "trash") {
         swalWithBootstrapButtons.fire({
-          title: "This is bad for SEO!",
-          text: "You should redirect the product instead.",
+          title: __("This is bad for SEO!", 'product-redirection-for-woocommerce'),
+          text: __("You should redirect the product instead.", 'product-redirection-for-woocommerce'),
           footer:
-            "<font color='red'>Did you know you have the&nbsp;" +
-            "<a href='https://codex.wordpress.org/Trash_status#EMPTY_TRASH_DAYS_option' target='_blank'>WordPress Trash Can</a>" +
-            "&nbsp;disabled?</font>",
+            "<font color='red'>" + __('Did you know you have the', 'product-redirection-for-woocommerce') + "&nbsp;" +
+            "<a href='https://codex.wordpress.org/Trash_status#EMPTY_TRASH_DAYS_option' target='_blank'>" + __('WordPress Trash Can', 'product-redirection-for-woocommerce') + "</a>" +
+            "&nbsp;" + __('disabled?', 'product-redirection-for-woocommerce') + "</font>",
           icon: "warning",
-          showCancelButton: LOCALIZED_PRFW.trashdisable,
-          confirmButtonText: "SHOW ME",
-          cancelButtonText: "DELETE PRODUCT",
+          showCancelButton: prfw_object.trashdisable,
+          confirmButtonText: __("SHOW ME", 'product-redirection-for-woocommerce'),
+          cancelButtonText: __("DELETE PRODUCT", 'product-redirection-for-woocommerce'),
           reverseButtons: true,
         }).then((result) => {
           if (result.value) {
-            var siteurl = LOCALIZED_PRFW.siteurl;
+            var siteurl = prfw_object.siteurl;
             var postid = getParameterByName("post", url);
             var urlMerge =
               siteurl + "/wp-admin/post.php?post=" + postid + "&action=edit";
@@ -98,17 +100,17 @@ jQuery(document).ready(function ($) {
         });
       } else {
         swalWithBootstrapButtons.fire({
-          title: "This is bad for SEO!",
-          text: "You should redirect the product instead.",
+          title: __("This is bad for SEO!", 'product-redirection-for-woocommerce'),
+          text: __("You should redirect the product instead.", 'product-redirection-for-woocommerce'),
           icon: "warning",
-          showCancelButton: LOCALIZED_PRFW.trashdisable,
-          confirmButtonText: "SHOW ME",
-          cancelButtonText: "DELETE PRODUCT",
+          showCancelButton: prfw_object.trashdisable,
+          confirmButtonText: __("SHOW ME", 'product-redirection-for-woocommerce'),
+          cancelButtonText: __("DELETE PRODUCT", 'product-redirection-for-woocommerce'),
           reverseButtons: true,
         })
         .then((result) => {
           if (result.value) {
-            var siteurl = LOCALIZED_PRFW.siteurl;
+            var siteurl = prfw_object.siteurl;
             var postid = getParameterByName("post", url);
             var urlMerge =
               siteurl + "/wp-admin/post.php?post=" + postid + "&action=edit";
@@ -136,22 +138,22 @@ jQuery(document).ready(function ($) {
       });
       if (trashCheck != "trash") {
         swalWithBootstrapButtons.fire({
-          title: "ERROR",
+          title: __("ERROR", 'product-redirection-for-woocommerce'),
           text:
-            "Deleting products is not allowed, please see the Redirection section on this page.",
+            __("Deleting products is not allowed, please see the Redirection section on this page.", 'product-redirection-for-woocommerce'),
           footer:
-            "<font color='red'>Did you know you have the&nbsp;" +
-            "<a href='https://codex.wordpress.org/Trash_status#EMPTY_TRASH_DAYS_option' target='_blank'>WordPress Trash Can</a>" +
-            "&nbsp;disabled?</font>",
+            "<font color='red'>" + __('Did you know you have the', 'product-redirection-for-woocommerce') + "&nbsp;" +
+            "<a href='https://codex.wordpress.org/Trash_status#EMPTY_TRASH_DAYS_option' target='_blank'>" + __('WordPress Trash Can', 'product-redirection-for-woocommerce') + "</a>" +
+            "&nbsp;" + __('disabled?', 'product-redirection-for-woocommerce') + "</font>",
           icon: "error",
           showCancelButton: false,
           confirmButtonText: "OK",
         });
       } else {
         swalWithBootstrapButtons.fire({
-          title: "ERROR",
+          title: __("ERROR", 'product-redirection-for-woocommerce'),
           text:
-            "Deleting products is not allowed, please see the Redirection section on this page.",
+            __("Deleting products is not allowed, please see the Redirection section on this page.", 'product-redirection-for-woocommerce'),
           icon: "error",
           showCancelButton: false,
           confirmButtonText: "OK",

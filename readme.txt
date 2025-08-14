@@ -1,9 +1,8 @@
 === Product Redirection for WooCommerce ===
 Contributors: polyplugins
 Tags: woocommerce, woocommerce redirect, woocommerce redirection, seo, search engine optimization
-Requires at least: 4.0
 Tested up to: 6.8
-Stable tag: 1.1.9
+Stable tag: 1.2.0
 Requires PHP: 5.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -62,6 +61,8 @@ Mainly to reduce the amount of time in development, but also to save resources. 
 3. Plugin settings
 
 == Changelog ==
+
+= 1.2.0 =
 
 = 1.1.9 =
 Bugfix: Duplicate translation
