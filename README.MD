@@ -1,7 +1,7 @@
 ![Product Redirection for WooCommerce Banner](.wordpress-org/banner-1880x609.png)
 ## About
 
-[youtube https://youtu.be/WCCaI83Bw5c]
+[Demo Video](https://youtu.be/WCCaI83Bw5c)
 
 Deleting products without any redirects can result in a negative impact on your Search Engine Optimization or SEO. To prevent product deletion a notice is displayed on clicking trash to inform that they should be redirecting.
 
