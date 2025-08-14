@@ -53,6 +53,7 @@ class Enqueue {
   public function enqueue($hook_suffix) {
     $this->enqueue_styles();
     $this->enqueue_scripts();
+    $this->enqueue_dismiss_notices();
   }
   
   /**
@@ -102,6 +103,23 @@ class Enqueue {
     if ($screen->id == 'edit-product' && is_admin()) {
       wp_enqueue_script('quick-edit-prfw', plugins_url('/js/backend/quick-edit.js', $this->plugin), array('jquery'), $this->version, true);
     }
+  }
+
+  /**
+   * Enqueue scripts
+   *
+   * @return void
+   */
+  private function enqueue_dismiss_notices() {
+    wp_enqueue_script('dismiss-notices-prfw', plugins_url('/js/backend/dismiss-notices.js', $this->plugin), array('jquery'), $this->version, true);
+    wp_localize_script(
+      'dismiss-notices-prfw',
+      'prfw_object',
+      array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce'    => wp_create_nonce('prfw_dismiss_notice_nonce')
+      )
+    );
   }
 
 }

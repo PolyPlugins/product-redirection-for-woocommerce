@@ -65,6 +65,10 @@ class Notices {
     if ($this->version == '1.2.0') {
       $this->notice_120();
     }
+
+    if ($this->version == '1.2.1') {
+      $this->notice_121();
+    }
   }
   
   /**
@@ -73,6 +77,22 @@ class Notices {
    * @return void
    */
   public function notice_120() {
+    ?>
+    <div class="notice notice-success is-dismissible product-redirection-for-woocommerce">
+      <p><?php echo esc_html__("Product Redirection for WooCommerce has been updated. We've added the ability to quick and bulk edit products per request. We've also updated translations and migrated to PSR-4 standards that we use across a majority of our plugins.", 'product-redirection-for-woocommerce'); ?></p>
+      <p><?php echo esc_html__("Speaking of plugins, we have a new free plugin if you're interested called ", 'product-redirection-for-woocommerce'); ?><a href="https://wordpress.org/plugins/maintenance-mode-made-easy/" target="_blank"><?php echo esc_html__("Maintenance Mode Made Easy", 'product-redirection-for-woocommerce'); ?></a>. <?php echo esc_html__("We've discovered a lot of the free maintenance plugins don't handle stopping WooCommerce orders during downtime and many fail to alert search engines that you're temporarily unavailable, leaving your site vulnerable to SEO issues.", 'product-redirection-for-woocommerce'); ?></p>
+      <p><?php echo esc_html__("We know it's been a minute since the last Product Redirection for WooCommerce update, so we'd love to hear what you think.", 'product-redirection-for-woocommerce'); ?></p>
+      <p><a href="https://wordpress.org/support/plugin/product-redirection-for-woocommerce/" target="_blank"><?php echo esc_html__('Feature Request', 'product-redirection-for-woocommerce'); ?></a> | <a href="http://wordpress.org/support/plugin/product-redirection-for-woocommerce/reviews/#new-post" target="_blank"><?php echo esc_html__('Leave a Review', 'product-redirection-for-woocommerce'); ?></a></p>
+    </div>
+    <?php
+  }
+  
+  /**
+   * Notice for v1.2.1
+   *
+   * @return void
+   */
+  public function notice_121() {
     ?>
     <div class="notice notice-success is-dismissible product-redirection-for-woocommerce">
       <p><?php echo esc_html__("Product Redirection for WooCommerce has been updated. We've added the ability to quick and bulk edit products per request. We've also updated translations and migrated to PSR-4 standards that we use across a majority of our plugins.", 'product-redirection-for-woocommerce'); ?></p>

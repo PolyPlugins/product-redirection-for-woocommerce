@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Product Redirection for WooCommerce
  * Description: Instead of deleting products which is bad for SEO, redirect them to their parent category or a custom url.
- * Version: 1.2.0
+ * Version: 1.2.1
  * Requires at least: 6.5
  * Requires PHP: 5.4
  * Author: Poly Plugins
